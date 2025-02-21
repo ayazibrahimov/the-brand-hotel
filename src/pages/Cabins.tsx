@@ -1,13 +1,14 @@
-// import { useEffect } from "react";
+import { useState } from "react";
 import CabinTable from "../features/cabins/CabinTable";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-// import {getCabins} from '../services/apiCabins.js';
+import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import Button from '../ui/Button'
 
 function Cabins() {
 
-//   console.log("VITE_SUPABASE_API_URL:", import.meta.env.VITE_SUPABASE_API_URL);
-// console.log("VITE_SUPABASE_API_KEY:", import.meta.env.VITE_SUPABASE_API_KEY);
+ const [showForm,setShowForm] = useState<boolean | null>()
+
 
   return (
     <>
@@ -16,8 +17,10 @@ function Cabins() {
        <p>Filter / Sort</p>   
       </Row>
       
-      <Row type="horizontal">
+      <Row type="normal">
         <CabinTable />
+        <Button variation="secondary" size="medium" onClick={()=>setShowForm(show=>!show)} >Add new cabin</Button>
+        { showForm && <CreateCabinForm />}
       </Row>
     </>
   ); 

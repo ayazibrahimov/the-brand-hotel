@@ -15,6 +15,17 @@ const Row = styled.div<{type:string | null}>`
  `}
 
 
+
+ ${(props)=>props.type==='normal' && css`
+   
+   display:block;
+  
+
+ `}
+
+
+
+
 `
 
 

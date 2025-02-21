@@ -13,6 +13,7 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
+import Notification from "./ui/Notification";
 
 
 
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
+      <Notification />
       </QueryClientProvider>
   );
 };

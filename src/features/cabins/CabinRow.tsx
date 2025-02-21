@@ -4,6 +4,7 @@ import { formatCurrency } from '../../utils/helpers';
 import { MdDelete } from "react-icons/md";
 import { deleteCabin } from "../../services/apiCabins";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 // import styled from "styled-components";
 
@@ -96,15 +97,19 @@ const CabinRow:React.FC<CabinRowProps> = ({cabin}) => {
   const {mutate} =useMutation({
     mutationFn:deleteCabin,
     onSuccess:()=>{
+      toast.success(`${name} hause was deleted`)
       queryClient.invalidateQueries({
         queryKey:["cabins"]
       })
-    }
+    },
+    onError:()=>{ toast.error(`${name} haus was not deleted`,{
+      icon: '❌',
+    })}
   })
 
 
   function deleteHandle(){
-    const isConfirmed = window.confirm("Do you want to delete ?");
+    const isConfirmed = window.confirm(`Do you want to delete ${name} hause ?`);
     if (isConfirmed) {
       mutate(cabinId as string | number); 
     }
